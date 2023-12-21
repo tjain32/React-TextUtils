@@ -1,10 +1,11 @@
-import { useState, useSyncExternalStore } from "react";
+import { useState} from "react";
 import React from "react";
 
 export default function TextForm(props) {
   const handleUpClick = () => {
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Converted to UpperCase","success");
   };
   const handleOnChange = (event) => {
     setText(event.target.value);
@@ -12,27 +13,35 @@ export default function TextForm(props) {
   const handleLowerClick = () => {
     let newText = text.toLocaleLowerCase();
     setText(newText);
+    props.showAlert("Converted to LowerCase","success");
   }
   const handleClearClick = () => {
     let newText = "";
     setText(newText);
+    props.showAlert("Text Cleared","success");
   }
   const handleCopy = () =>
   {
     var text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    props.showAlert("Text Copied to clipboard","success");
   }
 
   const handleExtraSpaces = () => 
   {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
+    props.showAlert("Extra spaced has been removed","success");
   }
-  const [text, setText] = useState();
+  const [text, setText] = useState('');
   return (
     <>
-      <div>
+      <div 
+      style={{
+        backgroundColor: props.mode==='light'?'white':'#34495E ',
+        color: props.mode==='dark'?'white':'#34495E '
+      }}>
         <h1>{props.heading}</h1>
         <div className="mb-3">
           <textarea
@@ -42,6 +51,10 @@ export default function TextForm(props) {
             id="myBox"
             rows="8"
             value={text}
+            style={{
+              backgroundColor: props.mode==='light'?'white':'#34495E ',
+              color: props.mode==='dark'?'white':'#34495E '
+            }}
           ></textarea>
         </div>
         <button className="btn btn-primary mx-1" onClick={handleUpClick}>
@@ -60,12 +73,17 @@ export default function TextForm(props) {
           Remove extra spaces
         </button>
       </div>
-      <div className="container my-3">
+      <div className="container my-3"
+      style={{
+        backgroundColor: props.mode==='light'?'white':'#34495E ',
+        color: props.mode==='dark'?'white':'#34495E '
+      }}
+      >
         <h2>Your text Summary</h2>
-        <p>{text.split(" ").length} words and {text.length} characters</p>
-        <p>{0.008* (text.split(" ").length)} minutes read</p>
+        <p>{text.trim() === '' ? 0 : text.match(/\S+/g).length} words and {text.replace(/\s+/g, '').length} characters</p>
+        <p>{0.008* (text.trim() === '' ? 0 : text.match(/\S+/g).length)} minutes read</p>
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p>{text.length>0?text:"Enter your text to preview it here!"}</p>
       </div> 
     </>
   );
