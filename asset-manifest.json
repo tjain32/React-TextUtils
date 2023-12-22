@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/tjain32/React-TextUtils/static/css/main.e6c13ad2.css",
+    "main.js": "/tjain32/React-TextUtils/static/js/main.6c95512f.js",
+    "static/js/787.fb9a5fa6.chunk.js": "/tjain32/React-TextUtils/static/js/787.fb9a5fa6.chunk.js",
+    "index.html": "/tjain32/React-TextUtils/index.html",
+    "main.e6c13ad2.css.map": "/tjain32/React-TextUtils/static/css/main.e6c13ad2.css.map",
+    "main.6c95512f.js.map": "/tjain32/React-TextUtils/static/js/main.6c95512f.js.map",
+    "787.fb9a5fa6.chunk.js.map": "/tjain32/React-TextUtils/static/js/787.fb9a5fa6.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.6c95512f.js"
+  ]
+}
